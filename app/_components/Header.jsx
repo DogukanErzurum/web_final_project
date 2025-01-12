@@ -113,7 +113,15 @@ function Header() {
                         {CategoryList.map((category, index) => (
                             <Link key={index} href={'/products-category/' + category.attributes.name}>
                                 <DropdownMenuItem className='flex gap-2 items-center cursor-pointer'>
-                                    <Image src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + category?.attributes?.icon?.data?.attributes?.url} alt='icon' width={23} height={23} />
+                                    <Image
+                                        src={category?.attributes?.icon?.data?.attributes?.url.startsWith('http')
+                                            ? category?.attributes?.icon?.data?.attributes?.url
+                                            : process.env.NEXT_PUBLIC_BACKEND_BASE_URL + category?.attributes?.icon?.data?.attributes?.url
+                                        }
+                                        alt={category?.attributes?.icon?.data?.attributes?.name || 'icon'}
+                                        width={23}
+                                        height={23}
+                                    />
                                     <h2 className='text-lg'>{category?.attributes?.name}</h2>
                                 </DropdownMenuItem>
                             </Link>
