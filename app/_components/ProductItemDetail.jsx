@@ -13,7 +13,7 @@ function ProductItemDetail({ product }) {
 
     const jwt = sessionStorage.getItem('jwt');
     const user = JSON.parse(sessionStorage.getItem('user'))
-    const {updateCart,setUpdateCart}=useContext(UpdateCartContext)
+    const { updateCart, setUpdateCart } = useContext(UpdateCartContext)
     const [productTotalPrice, setProductTotalPrice] = useState(
         product.attributes.sellingPrice ?
             product.attributes.sellingPrice :
@@ -35,7 +35,7 @@ function ProductItemDetail({ product }) {
                 amount: (quantity * productTotalPrice).toFixed(2),
                 products: product.id,
                 users_permissions_user: user.id,
-                userId:user.id
+                userId: user.id
             }
         }
 
@@ -49,13 +49,20 @@ function ProductItemDetail({ product }) {
         })
     }
 
+    const productImage = product.attributes.images.data[0]?.attributes.url;
+
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 p-7 bg-white text-black '>
-            <Image src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + product.attributes.images.data[0].attributes.url}
+            <Image
+                src={
+                    productImage?.startsWith("http")
+                        ? productImage
+                        : "/default-image.png" // Eğer URL eksikse varsayılan bir görsel kullan
+                }
                 width={300}
                 height={300}
-                alt='image'
-                className='bg-slate-200 p-5 h-[320px] w-[300px] object-contain rounded-lg'
+                alt={product.attributes.name || "Product Image"}
+                className="bg-slate-200 p-5 h-[320px] w-[300px] object-contain rounded-lg"
             />
             <div className='flex flex-col gap-3'>
                 <h2 className='text-2xl font-bold'>{product.attributes.name}</h2>

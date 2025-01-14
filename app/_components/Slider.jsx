@@ -21,11 +21,11 @@ function Slider({ sliderList }) {
 
     return (
         <Carousel className='m-7'
-        plugins={[
-            Autoplay({
-              delay: 16000,
-            }),
-          ]}>
+            plugins={[
+                Autoplay({
+                    delay: 16000,
+                }),
+            ]}>
             <CarouselContent>
                 {sliderList.map((slider, index) => (
                     <CarouselItem
@@ -35,13 +35,14 @@ function Slider({ sliderList }) {
                         <p>Sesi Açmak İçin Video Üzerine Tıklayınız.</p>
                         <video
                             src={
-                                process.env.NEXT_PUBLIC_BACKEND_BASE_URL +
-                                slider.attributes?.image?.data?.attributes?.url
+                                slider.attributes?.image?.data?.attributes?.url.startsWith('http')
+                                    ? slider.attributes?.image?.data?.attributes?.url // Tam URL ise olduğu gibi kullan
+                                    : process.env.NEXT_PUBLIC_BACKEND_BASE_URL + slider.attributes?.image?.data?.attributes?.url // Göreli URL ise birleştir
                             }
                             alt="slider"
                             className="w-full h-[200px] md:h-[700px] object-cover rounded-2xl"
                             autoPlay
-                            muted={activeVideo !== index} 
+                            muted={activeVideo !== index}
                         />
                     </CarouselItem>
                 ))}
