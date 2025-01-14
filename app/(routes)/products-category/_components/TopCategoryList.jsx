@@ -6,7 +6,7 @@ function TopCategoryList({ categoryList, selectedCategory }) {
   return (
     <div className='flex gap-5 mt-2 overflow-auto mx-7 md:mx-20 justify-center'>
       {categoryList.map((category, index) => (
-        <Link href={'/products-category/' + category.attributes.name} key={index}
+        <Link href={'/products-category/' + slugify(category.attributes.name)} key={index}
           className={`flex flex-col items-center bg-red-50 gap-2 p-3 rounded-lg group cursor-pointer hover:bg-red-200 
             w-[150px] min-w-[100px] ${selectedCategory == category.attributes.name && 'bg-red-600 text-white'}
             `}>
