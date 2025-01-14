@@ -11,7 +11,7 @@ function CartItemList({ cartItemList, onDeleteItem }) {
                     <div className='flex justify-between items-center p-2 mb-5'>
                         <div className='flex gap-6 items-center'>
                             <Image
-                                src={cart.image.startsWith("http") ? cart.image : "/default-image.png"} // Görsel URL'si tam değilse varsayılan kullan
+                                src={cart.image.startsWith("http") ? cart.image : "/default-image.png"} 
                                 width={70}
                                 height={70}
                                 alt={cart.name}
