@@ -62,7 +62,7 @@ function ProductItemDetail({ product }) {
                 width={300}
                 height={300}
                 alt={product.attributes.name || "Product Image"}
-                className="bg-slate-200 p-5 h-[320px] w-[300px] object-contain rounded-lg"
+                className="bg-slate-200 p-5 h-[520px] w-[300px] object-contain rounded-lg"
             />
             <div className='flex flex-col gap-3'>
                 <h2 className='text-2xl font-bold'>{product.attributes.name}</h2>
