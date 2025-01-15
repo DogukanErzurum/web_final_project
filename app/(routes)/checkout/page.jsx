@@ -69,15 +69,15 @@ function CheckOut() {
                 zip: zip,
                 address: address,
                 orderItemLists: cartItemList,
-                userId:user.id
+                userId: user.id
             }
         }
 
         GlobalApi.createOrder(payload, jwt).then(resp => {
             console.log(resp);
             toast('Sipariş Başariyla Verildi');
-            cartItemList.forEach((item,index)=> {
-                GlobalApi.deleteCartItem(item.id).then(resp=>{
+            cartItemList.forEach((item, index) => {
+                GlobalApi.deleteCartItem(item.id).then(resp => {
                 })
             })
             router.replace('/order-confirmation');
@@ -91,6 +91,9 @@ function CheckOut() {
             <div className='p-5 px-5 md:px-10 grid grid-cols-3 md:grid-cols-3 py-8'>
                 <div className='md:col-span-2 mx-20'>
                     <h2 className='font-bold text-3xl'>Ödeme Detayları</h2>
+                    <p className='text-sm text-gray-500 mt-1'>
+                        PayPal ile ödeme yapmak için lütfen sayfayı yenileyiniz.
+                    </p>
                     <div className='grid grid-cols-2 gap-10 mt-3'>
                         <Input placeholder='İsim' onChange={(e) => setUsername(e.target.value)} />
                         <Input placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
@@ -113,7 +116,7 @@ function CheckOut() {
                         <h2 className='font-bold flex justify-between'>Toplam : <span>${calculateTotalAmount()}</span></h2>
                         <Button onClick={() => onApprove({ paymentId: 123 })} className='bg-red-600'>Öde <ArrowBigRight /></Button>
                         <PayPalButtons
-                        disabled={!(username&&email&&address&&zip)}
+                            disabled={!(username && email && address && zip)}
                             style={{ layout: "horizontal" }}
                             createOrder={(data, actions) => {
                                 try {
@@ -121,7 +124,7 @@ function CheckOut() {
                                     if (isNaN(amount)) {
                                         throw new Error('Total amount is invalid.');
                                     }
-                            
+
                                     return actions.order.create({
                                         purchase_units: [
                                             {
