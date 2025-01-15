@@ -12,11 +12,10 @@ import Autoplay from "embla-carousel-autoplay"
 import Image from "next/image";
 
 function Slider({ sliderList }) {
-    // Videoların hangi öğesinin sesi açılacak, onu takip etmek için bir state
     const [activeVideo, setActiveVideo] = useState(null);
 
     const handleItemClick = (index) => {
-        setActiveVideo(index); // Tıklanan öğenin indeksini kaydet
+        setActiveVideo(index); 
     };
 
     return (
@@ -30,14 +29,14 @@ function Slider({ sliderList }) {
                 {sliderList.map((slider, index) => (
                     <CarouselItem
                         key={index}
-                        onClick={() => handleItemClick(index)} // Tıklama olayını yönet
+                        onClick={() => handleItemClick(index)} 
                     >
                         <p>Sesi Açmak İçin Video Üzerine Tıklayınız.</p>
                         <video
                             src={
                                 slider.attributes?.image?.data?.attributes?.url.startsWith('http')
-                                    ? slider.attributes?.image?.data?.attributes?.url // Tam URL ise olduğu gibi kullan
-                                    : process.env.NEXT_PUBLIC_BACKEND_BASE_URL + slider.attributes?.image?.data?.attributes?.url // Göreli URL ise birleştir
+                                    ? slider.attributes?.image?.data?.attributes?.url 
+                                    : process.env.NEXT_PUBLIC_BACKEND_BASE_URL + slider.attributes?.image?.data?.attributes?.url 
                             }
                             alt="slider"
                             className="w-full h-[200px] md:h-[700px] object-cover rounded-2xl"
