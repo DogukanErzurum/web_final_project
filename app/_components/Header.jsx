@@ -95,10 +95,13 @@ function Header() {
         <div className='p-5 shadow-md flex justify-between'>
             <div className='flex items-center gap-8'>
                 <div className='flex flex-col items-center'>
-                    <Image src='/logo.png' alt='logo' width={80} height={60} />
+                    <Link href='/'>
+                        <Image src='/logo.png' alt='logo' width={80} height={60} className='cursor-pointer' />
+                    </Link>
                     <span className='text-center text-sm mt-2'><b>Arif Işık</b></span>
                     <span className='text-center text-sm mt-2'><b>Halı, Kilim, Travel</b></span>
                 </div>
+
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <h2 className='hidden md:flex gap-2 items-center
